@@ -20,12 +20,20 @@
 
 	<dependencies>
 		<!--CETTE DEPENDANCE NE DEVRAIT DONC PAS ETRE DANS CE PROJET!-->
-		<dependency>
-			<groupId>org.thibaut.thelibrary</groupId>
-			<artifactId>webservice</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.thibaut.thelibrary</groupId>-->
+			<!--<artifactId>webservice</artifactId>-->
+			<!--<version>0.0.1-SNAPSHOT</version>-->
+		<!--</dependency>-->
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -33,10 +41,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
 
 		<dependency>
@@ -59,27 +63,50 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-codegen-plugin</artifactId>
-				<version>3.2.7</version>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
 				<executions>
 					<execution>
-						<id>generate-sources</id>
-						<phase>generate-sources</phase>
-						<configuration>
-							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
-							<wsdlOptions>
-								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/SearchBookService.wsdl</wsdl>
-								</wsdlOption>
-							</wsdlOptions>
-						</configuration>
 						<goals>
-							<goal>wsdl2java</goal>
+							<goal>generate</goal>
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<schemaLanguage>WSDL</schemaLanguage>
+					<!--<generatePackage>${project.basedir}/src/main/java/org.thibaut.thelibrary.webapp.generated.jaxb2</generatePackage>-->
+					<generatePackage>hello.wsdl</generatePackage>
+					<schemas>
+						<schema>
+							<url>http://localhost:8080/ws/books.wsdl</url>
+						</schema>
+					</schemas>
+				</configuration>
 			</plugin>
+
+			<!--<plugin>-->
+				<!--<groupId>org.apache.cxf</groupId>-->
+				<!--<artifactId>cxf-codegen-plugin</artifactId>-->
+				<!--<version>3.2.7</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>generate-sources</id>-->
+						<!--<phase>generate-sources</phase>-->
+						<!--<configuration>-->
+							<!--<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>-->
+							<!--<wsdlOptions>-->
+								<!--<wsdlOption>-->
+									<!--<wsdl>${basedir}/src/main/resources/SearchBookService.wsdl</wsdl>-->
+								<!--</wsdlOption>-->
+							<!--</wsdlOptions>-->
+						<!--</configuration>-->
+						<!--<goals>-->
+							<!--<goal>wsdl2java</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 
 		</plugins>
 
