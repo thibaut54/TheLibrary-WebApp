@@ -11,12 +11,13 @@ public class BookClient extends WebServiceGatewaySupport {
 
 	private static final Logger log = LoggerFactory.getLogger(BookClient.class);
 
-	public GetBookResponse getBook( Integer id ) {
+	public GetBookResponse getBooks( String title ) {
 
 		GetBookRequest request = new GetBookRequest();
-		request.setId(id);
 
-		log.info("Requesting book for ID: " + id);
+		request.setBookTitle(title);
+
+		log.info("Requesting book for title: " + title);
 
 		GetBookResponse response = (GetBookResponse) getWebServiceTemplate()
 				                                                   .marshalSendAndReceive("http://localhost:8080/ws/books", request,
