@@ -35,15 +35,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		User user = new User();
 
-
-//		User user = new User();
-//
 		if( input.contains( "@" )){
 			user = userClient.getUserByEmail( input ).getUser();
 		}
 		else {
 			user = userClient.getUserByUsername( input ).getUser();
-
 		}
 
 		if (user == null) {

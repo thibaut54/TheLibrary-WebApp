@@ -19,7 +19,7 @@ public class BookController {
 		GetBookResponse books = bookClient.getBooks( "Book1" );
 		System.out.println( " BOOK LIST " );
 		books.getBook().forEach( book -> System.out.println( book.getTitle() ));
-		return null;
+		return "test";
 	}
 
 }
