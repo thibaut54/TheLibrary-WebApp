@@ -2,12 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.1.RELEASE</version>
+		<version>2.1.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>org.thibaut.thelibrary</groupId>
 	<artifactId>webapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -16,15 +18,10 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
 	</properties>
 
 	<dependencies>
-		<!--CETTE DEPENDANCE NE DEVRAIT DONC PAS ETRE DANS CE PROJET!-->
-		<!--<dependency>-->
-			<!--<groupId>org.thibaut.thelibrary</groupId>-->
-			<!--<artifactId>webservice</artifactId>-->
-			<!--<version>0.0.1-SNAPSHOT</version>-->
-		<!--</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -42,10 +39,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-security</artifactId>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>${thymeleaf-layout-dialect.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -80,7 +82,7 @@
 				<configuration>
 					<schemaLanguage>WSDL</schemaLanguage>
 					<!--<generatePackage>${project.basedir}/src/main/java/org.thibaut.thelibrary.webapp.generated.jaxb2</generatePackage>-->
-					<generatePackage>hello.wsdl</generatePackage>
+					<generatePackage>thelibrary.wsdl</generatePackage>
 					<schemas>
 						<schema>
 							<url>http://localhost:8080/ws/books.wsdl</url>

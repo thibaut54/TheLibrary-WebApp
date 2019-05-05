@@ -1,7 +1,8 @@
 package org.thibaut.thelibrary.webapp.client;
 
-import hello.wsdl.GetBookRequest;
-import hello.wsdl.GetBookResponse;
+import org.springframework.stereotype.Component;
+import thelibrary.wsdl.GetBookRequest;
+import thelibrary.wsdl.GetBookResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
@@ -20,9 +21,10 @@ public class BookClient extends WebServiceGatewaySupport {
 		log.info("Requesting book for title: " + title);
 
 		GetBookResponse response = (GetBookResponse) getWebServiceTemplate()
-				                                                   .marshalSendAndReceive("http://localhost:8080/ws/books", request,
-						                                                   new SoapActionCallback(
-								                                                   "http://spring.io/guides/gs-producing-web-service/GetBookRequest"));
+				                                                   .marshalSendAndReceive(
+				                                                   		"http://localhost:8080/ws/books",
+						                                                   request/*,
+						                                                   new SoapActionCallback( "http://spring.io/guides/gs-producing-web-service/GetBookRequest" )*/);
 
 		return response;
 	}
