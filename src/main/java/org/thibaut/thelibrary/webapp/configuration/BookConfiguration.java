@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.thibaut.thelibrary.webapp.client.BookClient;
+import org.thibaut.thelibrary.webapp.client.UserClient;
 
 @Configuration
 public class BookConfiguration {
@@ -18,8 +19,17 @@ public class BookConfiguration {
 	}
 
 	@Bean
-	public BookClient bookClient( Jaxb2Marshaller marshaller) {
+	public BookClient bookClient(Jaxb2Marshaller marshaller) {
 		BookClient client = new BookClient();
+		client.setDefaultUri("http://localhost:8080/ws");
+		client.setMarshaller(marshaller);
+		client.setUnmarshaller(marshaller);
+		return client;
+	}
+
+	@Bean
+	public UserClient userClient( Jaxb2Marshaller marshaller) {
+		UserClient client = new UserClient();
 		client.setDefaultUri("http://localhost:8080/ws");
 		client.setMarshaller(marshaller);
 		client.setUnmarshaller(marshaller);

@@ -13,6 +13,7 @@ public class UserClient extends WebServiceGatewaySupport {
 
 	private static final Logger log = LoggerFactory.getLogger(UserClient.class);
 
+
 	public GetUserResponse getUserByEmail( String email ) {
 
 		GetUserRequest request = new GetUserRequest();
@@ -22,10 +23,7 @@ public class UserClient extends WebServiceGatewaySupport {
 		log.info("Requesting user for email: " + email);
 
 		GetUserResponse response =
-				(GetUserResponse ) getWebServiceTemplate().marshalSendAndReceive(
-						                                                "http://localhost:8080/ws",
-						                                                        request,
-						new SoapActionCallback( "http://spring.io/guides/gs-producing-web-service/GetBookRequest" ));
+				(GetUserResponse ) getWebServiceTemplate().marshalSendAndReceive(request);
 
 		return response;
 	}
@@ -39,10 +37,7 @@ public class UserClient extends WebServiceGatewaySupport {
 		log.info("Requesting user for username: " + username);
 
 		GetUserResponse response = (GetUserResponse ) getWebServiceTemplate()
-				                                              .marshalSendAndReceive(
-						                                              "http://localhost:8080/ws",
-						                                              request,
-						                                              new SoapActionCallback( "http://spring.io/guides/gs-producing-web-service/GetBookRequest" ));
+				                                              .marshalSendAndReceive(request);
 
 		return response;
 	}

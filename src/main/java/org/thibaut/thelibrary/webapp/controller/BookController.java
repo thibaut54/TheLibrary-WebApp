@@ -1,5 +1,6 @@
 package org.thibaut.thelibrary.webapp.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +9,9 @@ import org.thibaut.thelibrary.webapp.client.BookClient;
 import thelibrary.wsdl.GetBookResponse;
 
 @Controller
+@AllArgsConstructor
 public class BookController {
+
 
 	@Autowired
 	private BookClient bookClient;
