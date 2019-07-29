@@ -5,11 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.thibaut.thelibrary.webapp.client.BookClient;
-import thelibrary.wsdl.Book;
-import thelibrary.wsdl.GetBookResponse;
+import org.thiblibrary.ws.BookDtoJaxb;
+import org.thibaut.thelibrary.webapp.client.ThelibraryClient;
+
+import java.util.List;
 
 @SpringBootApplication
+//@EnableConfigurationProperties( ConfigProperties.class )
 @ComponentScan(basePackages = {"org.thibaut.thelibrary"})
 public class WebappApplication {
 
@@ -18,7 +20,7 @@ public class WebappApplication {
 	}
 
 	@Bean
-	CommandLineRunner lookup( BookClient quoteClient ) {
+	CommandLineRunner lookup( ThelibraryClient quoteClient ) {
 
 //		String title = "Titre exemple";
 //		GetBookResponse response = quoteClient.getBooks(title);
@@ -34,13 +36,12 @@ public class WebappApplication {
 				title = String.valueOf( args[0] );
 			}
 
-			GetBookResponse response = quoteClient.getBooks(title);
+			List< BookDtoJaxb > response = quoteClient.getBook(title);
 
-			for ( Book book: response.getBook() ) {
+			for ( BookDtoJaxb book: response ) {
 				System.out.println( "Book informations:" + book.getTitle() + " / " + book.getId() + " / " + book.getCategories() );
 			}
 		};
-
 	}
 }
 
